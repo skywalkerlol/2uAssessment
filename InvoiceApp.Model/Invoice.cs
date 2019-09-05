@@ -5,17 +5,6 @@ namespace InvoiceApp.Model
 {
     public class Invoice
     {
-        //public string invoice_number { get; set; }
-        //public decimal total { get; set; }
-        //public string currrency { get; set; }
-        //public DateTime invoice_date { get; set; }
-        //public DateTime due_date { get; set; }
-        //public string vendor_name { get; set; }
-        //public string remittance_address { get; set; }
-        //[JsonProperty(PropertyName = "id")]
-        //public string InvoiceId { get; set; }
-        //public int invoice_status { get; set; }
-
         [JsonProperty(PropertyName = "invoice_number")]
         public string InvoiceNumber { get; set; }
         [JsonProperty(PropertyName = "total")]

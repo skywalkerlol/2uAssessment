@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using InvoiceApp.Core;
 using InvoiceApp.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 namespace InvoiceApi.Controllers
 {
-
-
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("_myAllowSpecificOrigins")]
     public class InvoiceController : ControllerBase
     {
         InvoiceManager invManager;
@@ -91,7 +91,6 @@ namespace InvoiceApi.Controllers
             {
                 if (await invManager.UpdateAsync(id, invoice))
                 {
-
                     return Ok(invoice);
                 }
                 else
@@ -104,7 +103,6 @@ namespace InvoiceApi.Controllers
                 return StatusCode(500, ex.ToString());
             }
         }
-
 
         // DELETE: api/ApiWithActions/5
         //[HttpDelete("{id}")]

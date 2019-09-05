@@ -23,6 +23,7 @@ namespace InvoiceApi
             Configuration = configuration;
         }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -37,6 +38,17 @@ namespace InvoiceApi
             services.AddSingleton<InvoiceManager>();
             services.AddSingleton<IDocumentDBRepository<Invoice>>(new DocumentDBRepository<Invoice>());
             //TODO add Authn Authz oauth
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    //TODO fix this *. very bad security issue
+                    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();// https://localhost:44359/");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +63,7 @@ namespace InvoiceApi
                 app.UseHsts();
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

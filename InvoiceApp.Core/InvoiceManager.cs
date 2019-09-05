@@ -30,7 +30,7 @@ namespace InvoiceApp.Core
 
         public async Task<Invoice> GetByIdAsync(string id)
         {
-            var invoice = await Repository.GetItemAsync(id.ToString());
+            Invoice invoice = await Repository.GetItemAsync(id);
             return invoice;
         }
 
