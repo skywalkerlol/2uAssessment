@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InvoiceApp.Data\InvoiceApp.Data.csproj" />
+    <ProjectReference Include="..\InvoiceApp.Model\InvoiceApp.Model.csproj" />
+  </ItemGroup>
+
+</Project>
