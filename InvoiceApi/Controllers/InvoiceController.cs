@@ -74,7 +74,7 @@ namespace InvoiceApi.Controllers
             {
                 string id = await _invManager.AddAsync(invoice);
                 await _hubContext.Clients.All.SendAsync(ClientRefreshSignal);
-                return Created("", id);
+                return Ok(new OpResult() { Message= "invoice submitted successfully" });
             }
             catch (Exception ex)
             {

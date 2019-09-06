@@ -6,7 +6,7 @@ namespace InvoiceApp.Model
 {
     public enum InvoiceStatus
     {
-        PendingApproval,
+        Pending,
         Approved
     }
 }

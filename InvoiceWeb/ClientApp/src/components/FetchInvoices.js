@@ -13,7 +13,7 @@ export class FetchInvoices extends Component {
             });
     }
      approve(inv) {
-        inv.invoice_status = 1;//attempt to set to approved
+        inv.status = 1;//attempt to set to approved
         //put invoice here update state...
         fetch('https://localhost:44353/api/Invoice/' + inv.id, {
             method: 'PUT',
@@ -47,12 +47,12 @@ export class FetchInvoices extends Component {
         <thead>
           <tr>
             <th>Action</th>
-            <th>Invoice No</th>
-            <th>Total</th>
+            <th>Invoice Number</th>
+            <th>Invoice Total</th>
             <th>Invoice Date</th>
             <th>Due Date</th>
-            <th>Vendor</th>
-            <th>Remit Address</th>
+            <th>Vendor Name</th>
+            <th>Vendor Address</th>
           </tr>
         </thead>
         <tbody>

@@ -21,7 +21,7 @@ namespace InvoiceApp.Model
         public string RemitToAddress { get; set; }
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
-        [JsonProperty(PropertyName = "invoice_status")]
+        [JsonProperty(PropertyName = "status")]
         public int InvoiceStatus { get; set; }
     }
 }

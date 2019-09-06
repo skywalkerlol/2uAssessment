@@ -1,4 +1,14 @@
+# My Notes
+
+## Story 1 API Back End:
+Since the use case is for a simple document, I went with a document db and not a relation database. I used a cosmos db emulator as a server side data store. This is convenient to run locally. You can download from here : https://aka.ms/cosmosdb-emulator
+
+## Story 2 Front End:
+Ideally I would have used redux for state management on the front end for a more complicated use case. Since this was a simple Invoice approval page, i tried to keep it simple.
+
+
 # 2uAssessment
+
 The business analyst assigned to your sprint team has presented you with two user stories to complete this sprint. This assessment asks you to complete these story cards to the best of your ability. 
 
 The assessment is more about creating a working solution that meets as many of the acceptance criteria as possible than it is about getting every detail perfect. It is not necessary to complete every acceptance criteria to submit the assessment. Complete what you can and leave "TODO:" comments with appropriate placeholder instructions anywhere you are unable to complete your code. You must turn the assignment by the end of the third day after you are given the assignment.
@@ -42,3 +52,13 @@ As a member of the 2ULaundry Accounting Team I need to see a list of invoices th
 3. Create a solution that allows the user to select and approve invoices. Once an invoice is "Approved" it should dissappear from the list of available invoices.
 4. When the user approves an invoice the "status" property for that invoice should be updated to "Approved"
 5. When an invoice is submitted via the API from user story #1, it should populate in the list of displayed invoices without requiring the user to manually refresh the list of invoices.
+
+
+
+## My Notes
+
+Story 1 API Back End:
+Since the use case is for a simple document, I went with a document db and not a relation database. I used a cosmos db emulator as a server side data store. This is convenient to run locally. You can download from here : https://aka.ms/cosmosdb-emulator
+
+Story 2 Front End:
+Ideally I would have used redux for state management on the front end for a more complicated use case. Since this was a simple Invoice approval page, i tried to keep it simple.
