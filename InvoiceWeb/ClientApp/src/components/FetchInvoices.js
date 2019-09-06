@@ -4,7 +4,7 @@ import WebsocketService from '../services/WebsocketService';
 export class FetchInvoices extends Component {
     displayName = FetchInvoices.name
 
-  
+  //TODO move the fetches into its a service. move the url host to config.
      fetchInvoices() {
         fetch('https://localhost:44353/api/Invoice?status=0')
             .then(response => response.json())

@@ -15,7 +15,8 @@ Ideally I would have used redux for state management on the front end for a more
 private  readonly string Endpoint = "https://localhost:8081";
 private  readonly string Key = "primarykey123";
 ```
-5. Post a few requests with body below to the Api. You can access swagger doc at https://localhost:port/swagger. feel free to update values. 
+5. Update InvoiceWeb\ClientApp\src\components\FetchInvoices.js and replace the 'https://localhost:44353/api/' entries with the invoiceapi url.
+6. Post a few requests with body below to the Api. You can access swagger doc at https://localhost:port/swagger. feel free to update values. 
 ```json
 {
     "invoice_number": "inv1246",
@@ -27,10 +28,10 @@ private  readonly string Key = "primarykey123";
     "remittance_address": "1st Main st Charlotte NC 28277"
 }
 ```
-6. Start application from VS
-7. Try approving. 
-8. Try posting new invoices, it should update the UI automatically since it should be using websockets.
-9. You can use the developer console in browser to troubleshoot incase of any issues with web or socket connection. 
+7. Start application from VS
+8. Try approving. 
+9. Try posting new invoices, it should update the UI automatically since it should be using websockets.
+10. You can use the developer console in browser to troubleshoot incase of any issues with web or socket connection. 
 
 # 2uAssessment
 
