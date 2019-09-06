@@ -45,8 +45,8 @@ namespace InvoiceApi
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    //TODO move this to config
-                    builder.WithOrigins("https://localhost:44359").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                    //TODO cors allow * is not good.
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials();//.WithOrigins("https://localhost:44359")
                 });
             });
 

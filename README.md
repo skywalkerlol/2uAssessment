@@ -6,6 +6,30 @@ Since the use case is for a simple document, I went with a document db and not a
 ## Story 2 Front End:
 Ideally I would have used redux for state management on the front end for a more complicated use case. Since this was a simple Invoice approval page, i tried to keep it simple.
 
+### Run Instructions
+1. You need to have .net core 2.1 sdk installed and at least VS2017.
+2. Set the InvoiceApi and InvoiceWeb as multiple startup projects in visual Studio. 
+3. Install cosmos db emulator. You can download from here : https://aka.ms/cosmosdb-emulator
+4. Update following values in InvoiceApp.Data/DocumentDBRepository.cs from the cosmosdb emulator web page
+```csharp
+private  readonly string Endpoint = "https://localhost:8081";
+private  readonly string Key = "primarykey123";
+```
+5. Post a few requests with body below to the Api. You can access swagger doc at https://localhost:port/swagger. feel free to update values. 
+{
+    "invoice_number": "inv1246",
+    "total": 4.99,
+    "currrency": "usd",
+    "invoice_date": "2019-09-04T23:53:01.016Z",
+    "due_date": "2019-09-04T23:53:01.016Z",
+    "vendor_name": "Kroger",
+    "remittance_address": "1st Main st Charlotte NC 28277"
+}
+
+6. Start application from VS
+7. Try approving. 
+8. Try posting new invoices, it should update the UI automatically since it should be using websockets.
+9. You can use the developer console in browser to troubleshoot incase of any issues with web or socket connection. 
 
 # 2uAssessment
 
