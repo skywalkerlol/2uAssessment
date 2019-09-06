@@ -16,6 +16,7 @@ private  readonly string Endpoint = "https://localhost:8081";
 private  readonly string Key = "primarykey123";
 ```
 5. Post a few requests with body below to the Api. You can access swagger doc at https://localhost:port/swagger. feel free to update values. 
+```json
 {
     "invoice_number": "inv1246",
     "total": 4.99,
@@ -25,7 +26,7 @@ private  readonly string Key = "primarykey123";
     "vendor_name": "Kroger",
     "remittance_address": "1st Main st Charlotte NC 28277"
 }
-
+```
 6. Start application from VS
 7. Try approving. 
 8. Try posting new invoices, it should update the UI automatically since it should be using websockets.
