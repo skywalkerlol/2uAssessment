@@ -36,7 +36,7 @@ namespace InvoiceApp.Core
 
         public async Task<IEnumerable<Invoice>> GetList(int status)
         {
-            var invoices = await Repository.GetItemsAsync(d => d.InvoiceStatus == status);
+            IEnumerable<Invoice> invoices = await Repository.GetItemsAsync(d => d.InvoiceStatus == status);
             return invoices;
         }
     }

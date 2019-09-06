@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import WebsocketService from '../services/WebsocketService';
 
 export class FetchInvoices extends Component {
     displayName = FetchInvoices.name
 
   
-    fetchInvoices() {
-        fetch('https://localhost:44353/api/Invoice?status=0')//'api/SampleData/WeatherForecasts')
+     fetchInvoices() {
+        fetch('https://localhost:44353/api/Invoice?status=0')
             .then(response => response.json())
             .then(data => {
                 this.setState({ invoices: data, loading: false });
@@ -30,14 +31,14 @@ export class FetchInvoices extends Component {
             }).catch(err => {
                 console.error(err)
             });
-        //this.setState({
-        //    currentCount: this.state.currentCount + 1
-        //});
     }
     constructor(props) {
         super(props);
         this.state = { invoices: [], loading: true };
         this.fetchInvoices();
+        WebsocketService.registerRefreshList(() => {
+            this.fetchInvoices();
+        });
     }
      renderInvoices(invoices) {
         var that = this;

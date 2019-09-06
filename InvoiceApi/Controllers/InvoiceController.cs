@@ -7,6 +7,7 @@ using InvoiceApp.Model;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 namespace InvoiceApi.Controllers
 {
@@ -15,11 +16,13 @@ namespace InvoiceApi.Controllers
     [EnableCors("_myAllowSpecificOrigins")]
     public class InvoiceController : ControllerBase
     {
-        InvoiceManager invManager;
-
-        public InvoiceController(InvoiceManager manager)
+        private const string ClientRefreshSignal = "RefreshInvoiceList";
+        InvoiceManager _invManager;
+        readonly IHubContext<SignalRHandler> _hubContext;
+        public InvoiceController(InvoiceManager manager, IHubContext<SignalRHandler> hubContext)
         {
-            invManager = manager;
+            _invManager = manager;
+            _hubContext = hubContext;
         }
 
         // GET: api/Invoice
@@ -33,10 +36,9 @@ namespace InvoiceApi.Controllers
         {
             try
             {
-                InvoiceStatus invStatus;
-                if (Enum.TryParse<InvoiceStatus>(status.ToString(), out invStatus))
+                if (Enum.TryParse(status.ToString(), out InvoiceStatus invStatus))
                 {
-                   var invoices = await invManager.GetList(status);
+                    IEnumerable<Invoice> invoices = await _invManager.GetList(status);
                     return Ok(invoices);
                 }
                 else
@@ -57,7 +59,7 @@ namespace InvoiceApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Invoice>> GetAsync(string id)
         {
-            Invoice inv = await invManager.GetByIdAsync(id);
+            Invoice inv = await _invManager.GetByIdAsync(id);
             return inv;
         }
 
@@ -70,7 +72,8 @@ namespace InvoiceApi.Controllers
         {
             try
             {
-                string id = await invManager.AddAsync(invoice);
+                string id = await _invManager.AddAsync(invoice);
+                await _hubContext.Clients.All.SendAsync(ClientRefreshSignal);
                 return Created("", id);
             }
             catch (Exception ex)
@@ -89,7 +92,7 @@ namespace InvoiceApi.Controllers
         {
             try
             {
-                if (await invManager.UpdateAsync(id, invoice))
+                if (await _invManager.UpdateAsync(id, invoice))
                 {
                     return Ok(invoice);
                 }

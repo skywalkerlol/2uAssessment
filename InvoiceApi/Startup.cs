@@ -45,10 +45,12 @@ namespace InvoiceApi
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    //TODO fix this *. very bad security issue
-                    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();// https://localhost:44359/");
+                    //TODO move this to config
+                    builder.WithOrigins("https://localhost:44359").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
                 });
             });
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +71,11 @@ namespace InvoiceApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<SignalRHandler>("/signalrpath");
+            });
+
             app.UseHttpsRedirection();
             app.UseMvc();
         }

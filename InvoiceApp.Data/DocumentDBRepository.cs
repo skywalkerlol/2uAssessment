@@ -10,6 +10,7 @@ namespace InvoiceApp.Data
 {
     public class DocumentDBRepository<T> : IDocumentDBRepository<T> where T : class
     {
+        //TODO move this to config
         private  readonly string Endpoint = "https://localhost:8081";
         private  readonly string Key = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
         private  readonly string DatabaseId = "InvoiceDB";
